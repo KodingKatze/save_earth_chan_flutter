@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:save_earth_chan_flutter/customs/judul.dart';
 
 class Home extends StatefulWidget {
   const Home({ Key? key }) : super(key: key);
@@ -12,8 +13,10 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: CarouselSlider(
-  options: CarouselOptions(height: 400.0),
+      child: Column(children: [
+        Judul(title: "Home",),
+        CarouselSlider(
+  options: CarouselOptions(height: 400.0 / MediaQuery.of(context).devicePixelRatio),
   items: [1,2,3,4,5].map((i) {
     return Builder(
       builder: (BuildContext context) {
@@ -29,6 +32,7 @@ class _HomeState extends State<Home> {
     );
   }).toList(),
 ),
+      ],)
     );
   }
 }

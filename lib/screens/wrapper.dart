@@ -20,7 +20,7 @@ class _IndexerState extends State<Indexer> {
         labelStyle: TextStyle(fontWeight: FontWeight.bold)),
     new TabItem(Icons.home, "Home", Colors.green,
         labelStyle: TextStyle(fontWeight: FontWeight.bold)),
-    new TabItem(Icons.search, "Search", Colors.green,
+    new TabItem(Icons.input, "Add", Colors.green,
         labelStyle: TextStyle(fontWeight: FontWeight.bold)),
   ]);
 
