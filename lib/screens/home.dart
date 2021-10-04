@@ -1,38 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:save_earth_chan_flutter/customs/image_view.dart';
 import 'package:save_earth_chan_flutter/customs/judul.dart';
+import 'package:save_earth_chan_flutter/services/database.dart';
 
 class Home extends StatefulWidget {
-  const Home({ Key? key }) : super(key: key);
+  const Home({Key? key}) : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
+  DatabaseHandler database = new DatabaseHandler();
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(children: [
-        Judul(title: "Home",),
-        CarouselSlider(
-  options: CarouselOptions(height: 400.0 / MediaQuery.of(context).devicePixelRatio),
-  items: [1,2,3,4,5].map((i) {
-    return Builder(
-      builder: (BuildContext context) {
-        return Container(
-          width: MediaQuery.of(context).size.width,
-          margin: EdgeInsets.symmetric(horizontal: 5.0),
-          decoration: BoxDecoration(
-            color: Colors.amber
-          ),
-          child: Text('text $i', style: TextStyle(fontSize: 16.0),)
-        );
-      },
-    );
-  }).toList(),
-),
-      ],)
-    );
+    final _data = database.fetchAll();
+    return FutureBuilder(future: database.fetchAll(),
+        builder: (context, AsyncSnapshot<List<Disaster>> snapshot){
+          if(snapshot.hasData){
+            return Column(
+            children: [
+              Judul(title: "Home",),
+              CarouselSlider(items: snapshot.data!.map((i) {
+                return Builder(builder: (BuildContext context) {
+                return pictureShowItem(disaster: i);
+              },);
+              }).toList(), options: CarouselOptions(
+              height: 400.0 / MediaQuery.of(context).devicePixelRatio))
+            ],
+          );
+          }else {
+            return Container(
+                alignment: Alignment.center,
+                child: CircularProgressIndicator());
+          }
+        });
   }
 }
