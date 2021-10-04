@@ -13,10 +13,12 @@ class Indexer extends StatefulWidget {
 
 class _IndexerState extends State<Indexer> {
   var _currentPage = 1;
-  dynamic _widget = [Input(), Home(), NearYou()];
+  dynamic _widget = [NearYou(), Home(), Input()];
   List<TabItem> tabItems = List.of([
-    new TabItem(Icons.home, "Home", Colors.blue, labelStyle: TextStyle(fontWeight: FontWeight.normal)),
-    new TabItem(Icons.search, "Search", Colors.orange, labelStyle: TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
+    new TabItem(Icons.home, "Home", Colors.blue,
+        labelStyle: TextStyle(fontWeight: FontWeight.normal)),
+    new TabItem(Icons.search, "Search", Colors.orange,
+        labelStyle: TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
     new TabItem(Icons.layers, "Reports", Colors.red),
     new TabItem(Icons.notifications, "Notifications", Colors.cyan),
   ]);
@@ -24,13 +26,12 @@ class _IndexerState extends State<Indexer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _widget[_currentPage],
-      bottomNavigationBar: CircularBottomNavigation(
-        tabItems,
-        selectedCallback: (int selectedPos) {
-        print("clicked on $selectedPos");
-      },
-      )
-    );
+        body: _widget[_currentPage],
+        bottomNavigationBar: CircularBottomNavigation(
+          tabItems,
+          selectedCallback: (int selectedPos) {
+            _currentPage = selectedPos;
+          },
+        ));
   }
 }

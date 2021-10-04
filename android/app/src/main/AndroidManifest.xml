@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.save_earth_chan_flutter">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="save_earth_chan_flutter"
         android:icon="@mipmap/ic_launcher">
