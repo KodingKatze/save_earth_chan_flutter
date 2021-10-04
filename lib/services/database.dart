@@ -37,7 +37,14 @@ class DatabaseHandler {
   }
 
   Future submit(eventTitle, description, location, picture) async {
-    final response = await http.post(Uri.parse('_getAllDisaster'));
+    final response = await http.post(Uri.parse('_getAllDisaster'),
+        headers: <String, String>{"Content-Type": "application/json; charset=UTF-8"},
+        body: jsonEncode(<String, String>{
+          'eventTitle' : eventTitle,
+          'description' : description,
+          'location' : location,
+          'picture' : picture
+        }));
 
     if (response.statusCode == 200) {
       final res = jsonDecode(response.body);

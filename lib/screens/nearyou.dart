@@ -29,7 +29,8 @@ class _NearYouState extends State<NearYou> {
           if (snapshot.hasData) {
             return FlutterMap(
               options: MapOptions(
-                center: LatLng(snapshot.data!.latitude, snapshot.data!.longitude),
+                center:
+                    LatLng(snapshot.data!.latitude, snapshot.data!.longitude),
                 zoom: 13.0,
               ),
               layers: [
@@ -47,12 +48,16 @@ class _NearYouState extends State<NearYou> {
                 ),
                 MarkerLayerOptions(
                   markers: [
-                    Marker(
+                  Marker(
                       width: 80.0,
                       height: 80.0,
-                      point: LatLng(51.5, -0.09),
-                      builder: (ctx) => Container(
-                        child: FlutterLogo(),
+                      point: LatLng(
+                          snapshot.data!.latitude, snapshot.data!.longitude),
+                      builder: (ctx) => Column(
+                        children: [
+                          Text("Your Location"),
+                          Icon(Icons.location_pin, color: Colors.red),
+                        ]
                       ),
                     ),
                   ],
@@ -60,7 +65,9 @@ class _NearYouState extends State<NearYou> {
               ],
             );
           } else {
-            return CircularProgressIndicator();
+            return Container(
+                alignment: Alignment.center,
+                child: CircularProgressIndicator());
           }
         });
   }
