@@ -63,6 +63,8 @@ flutter_native_splash:
   image: "assets/splash.png"
   android: true
   ios: true
+  android_gravity: "fill"
+  fullscreen: true
 # The following section is specific to Flutter.
 flutter:
 

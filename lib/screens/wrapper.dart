@@ -37,7 +37,9 @@ class _IndexerState extends State<Indexer> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-        body: _widget[_currentPage],
+        body: Container(
+          padding: const EdgeInsets.only(top: 20.0),
+          child: _widget[_currentPage]),
         bottomNavigationBar: CircularBottomNavigation(
           tabItems,
           controller: _navigationController,

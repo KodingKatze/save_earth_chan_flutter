@@ -16,7 +16,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     FlutterStatusbarcolor.setStatusBarColor(Colors.white);
     return MaterialApp(
-      home: Indexer(),
+      home: Container(
+        child: Indexer(),
+      ),
     );
   }
 }
