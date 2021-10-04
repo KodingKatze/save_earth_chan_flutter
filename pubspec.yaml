@@ -39,6 +39,9 @@ dependencies:
   provider: ^6.0.1
   google_fonts: ^2.1.0
   flutter_map: ^0.14.0
+  http: ^0.13.3
+  flutter_statusbarcolor: ^0.2.3
+  carousel_slider: ^4.0.0
 
 dev_dependencies:
   flutter_test:

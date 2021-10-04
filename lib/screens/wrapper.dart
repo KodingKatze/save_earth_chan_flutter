@@ -14,24 +14,44 @@ class Indexer extends StatefulWidget {
 class _IndexerState extends State<Indexer> {
   var _currentPage = 1;
   dynamic _widget = [NearYou(), Home(), Input()];
-  List<TabItem> tabItems = List.of([
-    new TabItem(Icons.home, "Home", Colors.blue,
-        labelStyle: TextStyle(fontWeight: FontWeight.normal)),
-    new TabItem(Icons.search, "Search", Colors.orange,
-        labelStyle: TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
-    new TabItem(Icons.layers, "Reports", Colors.red),
-    new TabItem(Icons.notifications, "Notifications", Colors.cyan),
+  
+      List<TabItem> tabItems = List.of([
+    new TabItem(Icons.near_me, "Near Me", Colors.green,
+        labelStyle: TextStyle(fontWeight: FontWeight.bold)),
+    new TabItem(Icons.home, "Home", Colors.green,
+        labelStyle: TextStyle(fontWeight: FontWeight.bold)),
+    new TabItem(Icons.search, "Search", Colors.green,
+        labelStyle: TextStyle(fontWeight: FontWeight.bold)),
   ]);
+
+  late CircularBottomNavigationController _navigationController;
+
+  @override
+  void initState() {
+    super.initState();
+    _navigationController = new CircularBottomNavigationController(_currentPage);
+  }
+
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
         body: _widget[_currentPage],
         bottomNavigationBar: CircularBottomNavigation(
           tabItems,
+          controller: _navigationController,
           selectedCallback: (int selectedPos) {
-            _currentPage = selectedPos;
+            setState(() {
+              _currentPage = selectedPos;
+            });
           },
         ));
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _navigationController.dispose();
   }
 }
