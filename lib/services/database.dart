@@ -3,14 +3,14 @@ import 'dart:ffi';
 
 import 'package:http/http.dart' as http;
 
-String _getAllDisaster =
-    "https://save-earth-chan-server.herokuapp.com/api/disaster";
-String _submitDisaster =
-    "https://save-earth-chan-server.herokuapp.com/api/disaster";
-String _getDisasterById =
-    "https://save-earth-chan-server.herokuapp.com/api/disaster/";
-
 class DatabaseHandler {
+  String _getAllDisaster =
+      "https://save-earth-chan-server.herokuapp.com/api/disaster?q={http}";
+  String _submitDisaster =
+      "https://save-earth-chan-server.herokuapp.com/api/disaster";
+  String _getDisasterById =
+      "https://save-earth-chan-server.herokuapp.com/api/disaster/";
+
   Future<Disaster> fetchById(id) async {
     final response = await http.get(Uri.parse(_getDisasterById + id));
 
@@ -22,14 +22,16 @@ class DatabaseHandler {
   }
 
   Future<List<Disaster>> fetchAll() async {
-    final response = await http.get(Uri.parse(_getAllDisaster));
+    var _url = Uri.parse(_getAllDisaster);
+    var response = await http.get(_url);
 
     if (response.statusCode == 200) {
-      List res = jsonDecode(response.body);
+      List res = jsonDecode(response.body) as List;
       List<Disaster> result = [];
-      res.map((e) {
+      res.forEach((e) {
         result.add(Disaster.fromJson(e));
       });
+      print(result[0].picture);
       return result;
     } else {
       throw Exception('Failed to load disaster');
@@ -38,12 +40,14 @@ class DatabaseHandler {
 
   Future submit(eventTitle, description, location, picture) async {
     final response = await http.post(Uri.parse(_getAllDisaster),
-        headers: <String, String>{"Content-Type": "application/json; charset=UTF-8"},
+        headers: <String, String>{
+          "Content-Type": "application/json; charset=UTF-8"
+        },
         body: jsonEncode(<String, String>{
-          'eventTitle' : eventTitle,
-          'description' : description,
-          'location' : location,
-          'picture' : picture
+          'eventTitle': eventTitle,
+          'description': description,
+          'location': location,
+          'picture': picture
         }));
 
     if (response.statusCode == 200) {
@@ -59,7 +63,7 @@ class Disaster {
   String eventTitle;
   String location;
   String description;
-  List<String> picture;
+  List<dynamic> picture;
 
   Disaster({
     required this.eventTitle,
@@ -70,9 +74,9 @@ class Disaster {
 
   factory Disaster.fromJson(Map<String, dynamic> json) {
     return Disaster(
-        eventTitle: json['title'],
-        description: json['desc'],
-        location: json['loc'],
-        picture: json['pics']);
+        eventTitle: json['eventTitle'],
+        description: json['description'],
+        location: json['location'],
+        picture: json['picture']);
   }
 }
