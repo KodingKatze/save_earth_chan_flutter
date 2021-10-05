@@ -12,7 +12,7 @@ String _getDisasterById =
 
 class DatabaseHandler {
   Future<Disaster> fetchById(id) async {
-    final response = await http.get(Uri.parse('_getDisasterById' + id));
+    final response = await http.get(Uri.parse(_getDisasterById + id));
 
     if (response.statusCode == 200) {
       return Disaster.fromJson(jsonDecode(response.body));
@@ -22,7 +22,7 @@ class DatabaseHandler {
   }
 
   Future<List<Disaster>> fetchAll() async {
-    final response = await http.get(Uri.parse('_getAllDisaster'));
+    final response = await http.get(Uri.parse(_getAllDisaster));
 
     if (response.statusCode == 200) {
       List res = jsonDecode(response.body);
@@ -37,7 +37,7 @@ class DatabaseHandler {
   }
 
   Future submit(eventTitle, description, location, picture) async {
-    final response = await http.post(Uri.parse('_getAllDisaster'),
+    final response = await http.post(Uri.parse(_getAllDisaster),
         headers: <String, String>{"Content-Type": "application/json; charset=UTF-8"},
         body: jsonEncode(<String, String>{
           'eventTitle' : eventTitle,
