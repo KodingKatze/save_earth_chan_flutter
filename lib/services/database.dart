@@ -31,7 +31,6 @@ class DatabaseHandler {
       res.forEach((e) {
         result.add(Disaster.fromJson(e));
       });
-      print(result[0].picture);
       return result;
     } else {
       throw Exception('Failed to load disaster');
@@ -60,6 +59,7 @@ class DatabaseHandler {
 }
 
 class Disaster {
+  
   String eventTitle;
   String location;
   String description;

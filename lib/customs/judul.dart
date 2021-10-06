@@ -11,9 +11,10 @@ class Judul extends StatelessWidget {
     final _styleAtas = TextStyle(
         fontSize: 16, fontWeight: FontWeight.normal, color: Colors.black);
     final _styleBawah = TextStyle(
-        fontSize: 32, fontWeight: FontWeight.bold, color: Color(0xFF00A1B8));
+        fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF00A1B8));
 
     return Container(
+      margin: EdgeInsets.only(left: 40 / MediaQuery.of(context).devicePixelRatio, right: 40 / MediaQuery.of(context).devicePixelRatio, top: 40 / MediaQuery.of(context).devicePixelRatio),
         child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
