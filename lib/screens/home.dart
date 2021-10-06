@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:save_earth_chan_flutter/customs/image_view.dart';
 import 'package:save_earth_chan_flutter/customs/judul.dart';
 import 'package:save_earth_chan_flutter/services/database.dart';
+import 'package:anim_search_bar/anim_search_bar.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -14,14 +15,23 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   DatabaseHandler database = new DatabaseHandler();
   String search = '';
+  TextEditingController textController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     final _data = database.fetchAll();
     return Column(children: [
       Judul(
-        title: "Home",
+        title: "Explore",
       ),
+      AnimSearchBar(
+      width: 400.0 / MediaQuery.of(context).devicePixelRatio, 
+      textController: textController, 
+      onSuffixTap: (){
+        setState(() {
+          textController.clear();
+        });
+      })
       FutureBuilder(
           future: database.fetchAll(),
           builder: (context, AsyncSnapshot<List<Disaster>> snapshot) {
@@ -38,7 +48,7 @@ class _HomeState extends State<Home> {
                       }).toList(),
                       options: CarouselOptions(
                           height:
-                              400.0 / MediaQuery.of(context).devicePixelRatio))
+                              600.0 / MediaQuery.of(context).devicePixelRatio))
                 ],
               );
             } else {
