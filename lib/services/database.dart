@@ -59,24 +59,31 @@ class DatabaseHandler {
 }
 
 class Disaster {
-  
   String eventTitle;
   String location;
   String description;
+  Float latitude;
+  Float longitude;
+  List<dynamic> category;
   List<dynamic> picture;
 
-  Disaster({
-    required this.eventTitle,
-    required this.description,
-    required this.location,
-    required this.picture,
-  });
+  Disaster(
+      {required this.eventTitle,
+      required this.description,
+      required this.location,
+      required this.picture,
+      required this.latitude,
+      required this.longitude,
+      required this.category});
 
   factory Disaster.fromJson(Map<String, dynamic> json) {
     return Disaster(
         eventTitle: json['eventTitle'],
         description: json['description'],
         location: json['location'],
-        picture: json['picture']);
+        picture: json['picture'],
+        latitude: json['latitude'],
+        longitude: json['longitude'],
+        category: json['category']);
   }
 }
