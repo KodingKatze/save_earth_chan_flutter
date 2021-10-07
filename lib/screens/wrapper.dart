@@ -29,7 +29,7 @@ class _IndexerState extends State<Indexer> {
   @override
   void initState() {
     super.initState();
-    _navigationController = new CircularBottomNavigationController(_currentPage);
+    _navigationController = CircularBottomNavigationController(_currentPage);
   }
 
 

@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -10,9 +8,9 @@ class Judul extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _styleAtas = TextStyle(
+    const _styleAtas = TextStyle(
         fontSize: 16, fontWeight: FontWeight.normal, color: Colors.black);
-    final _styleBawah = TextStyle(
+    const _styleBawah = TextStyle(
         fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF00A1B8));
 
     return Container(
@@ -25,7 +23,7 @@ class Judul extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "${this.title}",
+              "$title",
               style: GoogleFonts.poppins(textStyle: _styleBawah),
             )
           ],

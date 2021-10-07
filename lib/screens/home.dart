@@ -31,7 +31,7 @@ class _HomeState extends State<Home> {
         setState(() {
           textController.clear();
         });
-      })
+      }),
       FutureBuilder(
           future: database.fetchAll(),
           builder: (context, AsyncSnapshot<List<Disaster>> snapshot) {
@@ -57,6 +57,9 @@ class _HomeState extends State<Home> {
                   child: CircularProgressIndicator());
             }
           }),
+      Judul(
+        title: "List of disaster",
+      ),
     ]);
   }
 }

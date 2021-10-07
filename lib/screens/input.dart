@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:save_earth_chan_flutter/customs/judul.dart';
 
 class Input extends StatefulWidget {
   const Input({Key? key}) : super(key: key);
@@ -14,6 +15,11 @@ class _InputState extends State<Input> {
   
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      child: Column(children: [
+        Judul(title: "Input",),
+        
+      ],),
+    );
   }
 }
