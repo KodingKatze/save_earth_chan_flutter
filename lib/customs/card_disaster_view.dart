@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:save_earth_chan_flutter/services/database.dart';
 
@@ -29,8 +30,11 @@ class CardDisasterView extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
-                child: Image(image: NetworkImage(disaster!.picture.first)),
-              ),
+                child: CachedNetworkImage(
+        imageUrl: disaster!.picture[0],
+        placeholder: (context, url) => CircularProgressIndicator(),
+        errorWidget: (context, url, error) => Icon(Icons.error),
+     ),),
               Column(
                 children: [
                   Text(disaster!.eventTitle),

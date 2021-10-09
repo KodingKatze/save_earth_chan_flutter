@@ -62,8 +62,8 @@ class Disaster {
   String eventTitle;
   String location;
   String description;
-  String latitude;
-  String longitude;
+  double latitude;
+  double longitude;
   List<dynamic> category;
   List<dynamic> picture;
 
