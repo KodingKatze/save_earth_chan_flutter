@@ -16,10 +16,13 @@ class _InputState extends State<Input> {
   String title = '';
   String desc = '';
   String loc = '';
+  late double longitude;
+  late double latitude;
+  String category = '';
 
   late File _image;
 
-  final imagePicker = ImagePicker()
+  final imagePicker = ImagePicker();
 
   Future getImage() async {
     final image = await imagePicker.pickImage(source: ImageSource.camera);

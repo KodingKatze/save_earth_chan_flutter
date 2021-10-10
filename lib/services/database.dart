@@ -7,7 +7,7 @@ class DatabaseHandler {
   String _getAllDisaster =
       "https://save-earth-chan-server.herokuapp.com/api/disaster?q={http}";
   String _submitDisaster =
-      "https://save-earth-chan-server.herokuapp.com/api/disaster";
+      "https://save-earth-chan-server.herokuapp.com/api/disaster?q={http}";
   String _getDisasterById =
       "https://save-earth-chan-server.herokuapp.com/api/disaster/";
 
@@ -37,21 +37,25 @@ class DatabaseHandler {
     }
   }
 
-  Future submit(eventTitle, description, location, picture) async {
-    final response = await http.post(Uri.parse(_getAllDisaster),
-        headers: <String, String>{
-          "Content-Type": "application/json; charset=UTF-8"
-        },
-        body: jsonEncode(<String, String>{
-          'eventTitle': eventTitle,
-          'description': description,
-          'location': location,
-          'picture': picture
-        }));
+  Future submit(disaster) async {
+    final request =
+        new http.MultipartRequest("POST", Uri.parse(_getAllDisaster));
+    disaster.forEach((key, value) {
+      if (key == "picture") {
+        value.map((e) async {
+          request.files.add(await http.MultipartFile.fromPath(
+            e,
+            "png",
+          ));
+        });
+      } else {
+        request.fields[key] = value;
+      }
+    });
 
+    var response = await request.send();
     if (response.statusCode == 200) {
-      final res = jsonDecode(response.body);
-      return res['task'];
+      print("Uploaded");
     } else {
       throw Exception('Failed to load disaster');
     }
