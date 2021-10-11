@@ -1,6 +1,5 @@
 <svg fill="none" viewBox="0 0 800 400" width="800" height="400" xmlns="http://www.w3.org/2000/svg">
 	<foreignObject width="100%" height="100%">
-    <div xmlns="http://www.w3.org/1999/xhtml">
     <h1 style="font-weight:bold; font-size:48px; background: linear-gradient(91.05deg, #1D7BC5 -10.71%, #779F25 117.06%);-webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     " align="center">Earth-chan</h1>
@@ -48,7 +47,6 @@
         <div> 
             <h2 style="font-weight:bold; background: linear-gradient(91.05deg, #1D7BC5 -10.71%, #779F25 117.06%);-webkit-background-clip: text;
     -webkit-text-fill-color: transparent;" align="center" >Sudimahendra</h2>
-        </div>
         </div>
     </div>
 	</foreignObject>
