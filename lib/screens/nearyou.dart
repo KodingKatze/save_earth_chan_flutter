@@ -60,7 +60,7 @@ class _NearYouState extends State<NearYou> {
                         ]
                       ),
                     ),
-                  ],
+                ],
                 ),
               ],
             );

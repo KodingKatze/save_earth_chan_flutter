@@ -29,8 +29,9 @@ class CardDisasterView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.circular(8.0),
+                borderRadius: BorderRadius.circular(8),
                 child: CachedNetworkImage(
+        width: 30,
         imageUrl: disaster!.picture[0],
         placeholder: (context, url) => CircularProgressIndicator(),
         errorWidget: (context, url, error) => Icon(Icons.error),

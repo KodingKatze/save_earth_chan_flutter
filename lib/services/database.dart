@@ -37,25 +37,22 @@ class DatabaseHandler {
     }
   }
 
-  Future submit(disaster) async {
+  Future submit(Disaster disaster) async {
     final request =
-        new http.MultipartRequest("POST", Uri.parse(_getAllDisaster));
-    disaster.forEach((key, value) {
-      if (key == "picture") {
-        value.map((e) async {
-          request.files.add(await http.MultipartFile.fromPath(
-            e,
-            "png",
-          ));
-        });
-      } else {
-        request.fields[key] = value;
-      }
-    });
+        new http.MultipartRequest("POST", Uri.parse(_submitDisaster));
+    request.fields['eventTitle'] = disaster.eventTitle;
+    request.fields['location'] = disaster.location;
+    request.fields['description'] = disaster.description;
+    request.fields['longitude'] = disaster.longitude;
+    request.fields['latitude'] = disaster.latitude;
 
+    disaster.picture.map((e) async {
+      request.files.add(await http.MultipartFile.fromPath("picture", e));
+    });
+    print(request);
     var response = await request.send();
     if (response.statusCode == 200) {
-      print("Uploaded");
+      print(response.stream);
     } else {
       throw Exception('Failed to load disaster');
     }
@@ -66,8 +63,8 @@ class Disaster {
   String eventTitle;
   String location;
   String description;
-  double latitude;
-  double longitude;
+  String latitude;
+  String longitude;
   List<dynamic> category;
   List<dynamic> picture;
 
@@ -86,8 +83,8 @@ class Disaster {
         description: json['description'],
         location: json['location'],
         picture: json['picture'],
-        latitude: json['latitude'],
-        longitude: json['longitude'],
+        latitude: json['latitude'].toString(),
+        longitude: json['longitude'].toString(),
         category: json['category']);
   }
 }
